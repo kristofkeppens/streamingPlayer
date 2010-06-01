@@ -1,0 +1,32 @@
+CKEditor streaming video Plugin
+by Kristof Keppens
+
+===================
+/ Install         /
+===================
+
+Copy this directory to the plugin directory of your CKEditor 
+installation and add the plugin to the config.js file as with
+other plugins.
+
+===================
+/ Set-Up	  /
+===================
+
+- Add a correct filebrowser configuration in your config.js file, ex.
+  config.filebrowserStreamingPlayerBrowseUrl = CKEDITOR.basePath+'php/browse.php,type=stream'. 
+  Change this to correspond with your environment. Make sure the filebrowser 
+  returns an url to the streaming resource.
+- Change the config settings in the plugin.js file. Movie should be the url to 
+  the flowplayer swf file. ExtraFlashVars gives the possibility to add extra 
+  configuration parameters, such as logo's, plugins, controls url, ... . 
+  Check the flowplayer site ( www.flowplayer.org ) for more info.
+
+==================
+/ Known Issues   /
+==================
+
+- autoPlay setting does not work
+- Fullscreen does not work
+- Preview does not work
+- possibly more ... 
