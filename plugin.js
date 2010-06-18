@@ -5,8 +5,8 @@ CKEDITOR.plugins.add('streamingPlayer', {
     
         CKEDITOR.tools.extend(CKEDITOR.config, {
             streamingPlayer: {
-                movie: 'http://video.ugent.be/flowplayer/minerva/flowplayer.commercial-3.1.5.swf',
-                extraFlashVars: ',"key":"#@b899c24f6f2ece06ca1","logo":{"url":"http://video.ugent.be/flowplayer/logougent.png","fullscreenOnly":false,"bottom":40,"left":10,"opacity":0.5},"plugins":{"h264streaming":{"url":"http://video.ugent.be/flowplayer/flowplayer.pseudostreaming-3.1.3.swf"},"controls":{"url":"http://video.ugent.be/flowplayer/minerva/flowplayer.controls-3.1.5.swf"}}',
+                movie: '',
+                extraFlashVars: '',
 		width : 852,
 		height : 480
             }
