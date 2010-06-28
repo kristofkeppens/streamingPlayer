@@ -52,11 +52,11 @@ Kristof Keppens
         type : [ { type : ATTRTYPE_EMBED, name : 'type' } ]
     };
 
-    var names = [ 'play', 'loop', 'menu', 'quality', 'scale', 'salign', 'wmode', 'bgcolor', 'base', 'flashvars', 'allowScriptAccess',
-        'allowFullScreen' ];
+    var names = [ 'play', 'loop', 'menu', 'quality', 'scale', 'salign', 'wmode', 'bgcolor', 'base', 'flashvars', 'allowscriptaccess',
+        'allowfullscreen' ];
     for ( var i = 0 ; i < names.length ; i++ )
         attributesMap[ names[i] ] = [ { type : ATTRTYPE_EMBED, name : names[i] }, { type : ATTRTYPE_PARAM, name : names[i] } ];
-    names = [ 'allowFullScreen', 'play', 'loop', 'menu' ];
+    names = [ 'allowfullscreen', 'play', 'loop', 'menu' ];
     for ( i = 0 ; i < names.length ; i++ )
         attributesMap[ names[i] ][0]['default'] = attributesMap[ names[i] ][1]['default'] = true;
 
@@ -197,7 +197,7 @@ Kristof Keppens
                             if(attrDef.name == 'flashvars')
                             {
                                 temp = value.split('"');
-                                this.setValue(temp[3]);
+                                this.setValue(temp[5]);
                             }
                             else
                             {
@@ -229,13 +229,13 @@ Kristof Keppens
                     if ( !objectNode )
                         continue;
                     var value = this.getValue();
-                    if ( isRemove || isCheckbox && value === attrDef[ 'default' ] )
+                    if ( isRemove )
                         objectNode.removeAttribute( attrDef.name );
                     else
                         if(attrDef.name == 'flashvars')
                         {
                             value = unescape(value);
-                            value = 'config={"clip":"' + escape( value ) + '"'+ CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
+                            value = 'config={"clip":{"url":"' + escape( value ) + '", "autoPlay":false}'+ CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
                             objectNode.setAttribute(attrDef.name, value);
                         }
                         else
@@ -247,7 +247,7 @@ Kristof Keppens
                     if ( !objectNode )
                         continue;
                     value = this.getValue();
-                    if ( isRemove || isCheckbox && value === attrDef[ 'default' ] )
+                    if ( isRemove )
                     {
                         if ( attrDef.name in paramMap )
                             paramMap[ attrDef.name ].remove();
@@ -286,7 +286,7 @@ Kristof Keppens
                         if(attrDef.name == 'flashvars')
                         {
                             value = unescape(value);
-                            value = 'config={"clip":"'+ escape( value ) + '"'+ CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
+                            value = 'config={"clip":{"url":"' + escape( value ) + '", "autoPlay":false}' + CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
                             embedNode.setAttribute( attrDef.name, value );
                         }
                         else
@@ -824,7 +824,7 @@ Kristof Keppens
                                             type : 'checkbox',
                                             id : 'play',
                                             label : editor.lang.flash.chkPlay,
-                                            'default' : true,
+                                            'default' : false,
                                             setup : loadValue,
                                             commit : commitValue
                                         },
@@ -832,13 +832,13 @@ Kristof Keppens
                                             type : 'checkbox',
                                             id : 'loop',
                                             label : editor.lang.flash.chkLoop,
-                                            'default' : true,
+                                            'default' : false,
                                             setup : loadValue,
                                             commit : commitValue
                                         },
                                         {
                                             type : 'checkbox',
-                                            id : 'allowFullScreen',
+                                            id : 'allowfullscreen',
                                             label : editor.lang.flash.chkFull,
                                             'default' : true,
                                             setup : loadValue,
@@ -884,6 +884,7 @@ Kristof Keppens
                                 {
                                     type : 'text',
                                     id : 'bgcolor',
+				    				default : '#000000',
                                     label : editor.lang.flash.bgcolor,
                                     setup : loadValue,
                                     commit : commitValue
