@@ -213,7 +213,8 @@ Kristof Keppens
 
     function commitValue( objectNode, embedNode, paramMap )
     {
-        var attributes = attributesMap[ this.id ];
+        var attributes = attributesMap[ this.id ],
+            dialog = this.getDialog();
         if ( !attributes )
             return;
 
@@ -235,7 +236,7 @@ Kristof Keppens
                         if(attrDef.name == 'flashvars')
                         {
                             value = unescape(value);
-                            value = 'config={"clip":{"url":"' + escape( value ) + '", "autoPlay":false}'+ CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
+                            value = 'config={"clip":{"url":"' + escape( value ) + '", "autoPlay":'+ dialog.getValueOf('properties', 'play') +'}'+ CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
                             objectNode.setAttribute(attrDef.name, value);
                         }
                         else
@@ -286,7 +287,7 @@ Kristof Keppens
                         if(attrDef.name == 'flashvars')
                         {
                             value = unescape(value);
-                            value = 'config={"clip":{"url":"' + escape( value ) + '", "autoPlay":false}' + CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
+                            value = 'config={"clip":{"url":"' + escape( value ) + '", "autoPlay":'+ dialog.getValueOf('properties', 'play') +'}' + CKEDITOR.config.streamingPlayer.extraFlashVars +'}';
                             embedNode.setAttribute( attrDef.name, value );
                         }
                         else
